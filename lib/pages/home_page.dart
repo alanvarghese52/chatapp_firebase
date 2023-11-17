@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildUserList(DocumentSnapshot document) {
+  Widget _buildUserList() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
-      builder: (context, snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text('error');
         }
@@ -58,6 +58,8 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+
 
 //build individual user list items
   Widget _buildUserListItem(DocumentSnapshot document) {
